@@ -1,31 +1,32 @@
 var app = angular.module("app.todos", ["xeditable"]);
 
-app.controller("todoController", ['$scope', ($scope) => {
+app.controller("todoController", ['$scope', 'svTodos', ($scope, svTodos) => {
     $scope.appName = "Todo Dashboard";
     $scope.formData = {};
-    $scope.todos = [{
-            text: "Khoi tao du an,include cac thu vien",
-            isDone: true
-        },
-        {
-            text: "cai dat app controller",
-            isDone: true
-        }, {
-            text: "Tao service api, binding du lieu",
-            isDone: false
-        }, {
-            text: "deploying len server: Heroku",
-            isDone: false
-        }
-    ];
+    $scope.loading = true;
+
+    $scope.todos = [];
+
+    // load data from api 
+    svTodos.get().then(function (res) {
+        $scope.todos = res.data;
+        $scope.loading = false;
+    });
 
     $scope.createTodo = () => {
         var todo = {
             text: $scope.formData.text,
             isDone: false
         }
-        $scope.todos.push(todo);
-        $scope.formData.text = "";
+        // add to database
+        svTodos.create(todo).then((res) =>{
+            $scope.todos = res.data;
+            $scope.formData.text = ""
+        });
+
+        // this code is test add list in front-end
+        // $scope.todos.push(todo);
+        // $scope.formData.text = "";
     }
 
     $scope.updateTodo = (todo) => {
