@@ -2,6 +2,7 @@ var app = angular.module("app.todos", []);
 
 app.controller("todoController", ['$scope', ($scope) => {
     $scope.appName = "Todo Dashboard";
+    $scope.formData = {};
     $scope.todos = [{
             text: "Khoi tao du an,include cac thu vien",
             isDone: true
@@ -17,4 +18,13 @@ app.controller("todoController", ['$scope', ($scope) => {
             isDone: false
         }
     ];
+
+    $scope.createTodo = () => {
+        var todo = {
+            text: $scope.formData.text,
+            isDone: false
+        }
+        $scope.todos.push(todo);
+        $scope.formData.text = "";
+    }
 }]);

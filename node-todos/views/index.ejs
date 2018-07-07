@@ -27,23 +27,24 @@
         </div>
 
         <div id="todo-list" class="row">
-           
+
             <div class="col-sm-6 offset-sm-3">
                 <div class="checkbox" ng-repeat="todo in todos">
-                    <input type="checkbox"> {{ todo.text }}
+                    <input type="checkbox" ng-model="todo.isDone">
+                    <span ng-class="{strike: todo.isDone}"> {{ todo.text }} </span>
                 </div>
             </div>
         </div>
 
         <div id="todo-form" class="row text-center">
-               
-                <div class="col-sm-8 offset-sm-2">
+
+            <div class="col-sm-8 offset-sm-2">
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg text-center" placeholder="add todo...">
+                        <input type="text" ng-model="formData.text" class="form-control input-lg text-center" placeholder="add todo...">
                     </div>
                 </form>
-                <button type="submit" class="btn btn-primary btn-lg">Add</button>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
             </div>
         </div>
 
