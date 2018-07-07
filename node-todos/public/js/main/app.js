@@ -1,4 +1,4 @@
-var app = angular.module("app.todos", []);
+var app = angular.module("app.todos", ["xeditable"]);
 
 app.controller("todoController", ['$scope', ($scope) => {
     $scope.appName = "Todo Dashboard";
@@ -26,5 +26,13 @@ app.controller("todoController", ['$scope', ($scope) => {
         }
         $scope.todos.push(todo);
         $scope.formData.text = "";
+    }
+
+    $scope.updateTodo = (todo) => {
+        console.log("update todo: ", todo);
+    }
+
+    $scope.deleteTodo = (todo) => {
+        console.log("delete todo: ", todo);
     }
 }]);
