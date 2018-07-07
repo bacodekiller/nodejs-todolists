@@ -8,8 +8,8 @@ app.factory("svTodos", ["$http", ($http) => {
         create: (todoData) => {
             return $http.post("/api/todo", todoData);
         },
-        update: (id, todoData) => {
-            return $http.put("/api/todo/" + id, todoData);
+        update: (todoData) => {
+            return $http.put("/api/todo/", todoData);
         },
         delete: (id) => {
             return $http.delete("/api/todo/" + id);

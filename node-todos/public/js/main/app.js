@@ -14,14 +14,16 @@ app.controller("todoController", ['$scope', 'svTodos', ($scope, svTodos) => {
     });
 
     $scope.createTodo = () => {
+        $scope.loading = true;
         var todo = {
             text: $scope.formData.text,
             isDone: false
         }
         // add to database
-        svTodos.create(todo).then((res) =>{
+        svTodos.create(todo).then((res) => {
             $scope.todos = res.data;
-            $scope.formData.text = ""
+            $scope.formData.text = "";
+            $scope.loading = false;
         });
 
         // this code is test add list in front-end
@@ -31,9 +33,19 @@ app.controller("todoController", ['$scope', 'svTodos', ($scope, svTodos) => {
 
     $scope.updateTodo = (todo) => {
         console.log("update todo: ", todo);
+        $scope.loading = true;
+        svTodos.update(todo).then((res) => {
+            $scope.todos = res.data;
+            $scope.loading = false;
+        });
     }
 
     $scope.deleteTodo = (todo) => {
         console.log("delete todo: ", todo);
+        $scope.loading = true;
+        svTodos.delete(todo._id).then((res) => {
+            $scope.todos = res.data;
+            $scope.loading = false;
+        });
     }
 }]);

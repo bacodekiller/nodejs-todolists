@@ -49,11 +49,11 @@ module.exports = (app) => {
 
     // update todo
     app.put("/api/todo", (req, res) => {
-        if (!req.body.id) {
+        if (!req.body._id) {
             return res.status(500).send("id id required");
         } else {
             Todos.update({
-                _id: req.body.id
+                _id: req.body._id
             }, {
                 text: req.body.text,
                 isDone: req.body.isDone
