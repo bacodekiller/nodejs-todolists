@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app.todos">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <!-- fontawesome-->
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- angularJS-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <!-- load app-->
+    <link rel="stylesheet" href="assets/style/style.css">
+    <!-- load mycss -->
+    <script src="assets/js/main/app.js"></script>
+    <title>Todo</title>
+</head>
+
+<body ng-controller="todoController">
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>{{ appName }}
+                <span class="badge badge-info">10</span>
+            </h1>
+        </div>
+
+        <div id="todo-list" class="row">
+           
+            <div class="col-sm-6 offset-sm-3">
+                <div class="checkbox" ng-repeat="todo in todos">
+                    <input type="checkbox"> {{ todo.text }}
+                </div>
+            </div>
+        </div>
+
+        <div id="todo-form" class="row text-center">
+               
+                <div class="col-sm-8 offset-sm-2">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="add todo...">
+                    </div>
+                </form>
+                <button type="submit" class="btn btn-primary btn-lg">Add</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
